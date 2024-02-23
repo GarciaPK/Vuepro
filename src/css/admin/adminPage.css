@@ -1,0 +1,161 @@
+.component-admin{
+  background: rgb(237, 237, 237);
+  margin-left: 250px;
+  height: 773px;
+  margin-top: -773px;
+}
+
+.btn-home {
+    width: 100%;
+    border-radius: 25px;
+  }
+  
+  .btn-home a{
+    color: white;
+    text-decoration: none;
+  }
+  
+  .btn-home:hover {
+    background: #0053B3;
+  }
+  
+  .home {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .tareas {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  
+  .btn-exit {
+    width: auto;
+    height: 50px;
+  }
+  
+  .btn-exit a {
+    font-size: 20px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .exit {
+    margin-top: 0px;
+    width: 25px;
+    height: 25px;
+  }
+  
+  .exit a{
+    text-align: center;
+  }
+  
+  .flecha {
+    width: 20px;
+    height: 20px;
+    margin-top: auto;
+    text-align: center;
+    align-items: right;
+    align-contents: right;
+    margin-right: auto;
+  }
+  
+  .btn-dropdown {
+    width: 100%;
+    border-radius: 25px;
+    text-align: center;
+  }
+  
+  .btn-dropdown:hover {
+    background: #0053B3;
+  }
+  
+  .sidebar-admin {
+    width: 250px;
+    background-color: #002754;
+    color: #ecf0f1;
+    padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: -60px;
+  }
+  
+  .admin-info {
+    text-align: center;
+  }
+  
+  .admin-info img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    width: 70px;
+    height: 70px;
+  }
+  
+  .admin-info p {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    color: #ecf0f1;
+    padding: 15px;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #34495e;
+    color: #ffffff;
+  }
+  
+  .dropdown {
+    border-radius: 20px;
+    margin-top: 5px;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    background-color: #2d3436;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdown-open .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu a {
+    color: #ecf0f1;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #57606f;
+    color: #ffffff;
+  }
+  
+  .logout {
+    margin-top: auto;
+    text-align: center;
+  }
