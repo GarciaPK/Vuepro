@@ -1,7 +1,7 @@
 <!-- UserComponent.vue -->
 <template>
-  <div class="container">
-    <div class="table">
+  <div class="container-user">
+    <div class="tablee">
       <h1 class="tittle" align="left">Lista de Tareas</h1>
       <input class="search" type="text" placeholder="Search" v-model="searchTerm" @keyup.enter="searchTask">
       <button type="button" class="btn" @click="showModal = true">
@@ -28,7 +28,7 @@
                 <img src="@/assets/boligrafo.png" />
               </button>
               
-              <button class="eliminar" @click="deleteTask(tarea.id)">
+              <button class="eliminar" @click="deleteTask(tarea.id)"> 
                 <img src="@/assets/borrar.png" />
               </button>
 
@@ -105,13 +105,13 @@
       </transition>
       <transition name="fade">
         <div class="modal-editar" v-if="showModalEdit">
-          <form class="form">
+          <form class="form-editar">
             <h2>Editar Tarea</h2>
-            <div class="flex">
+            <div class="flex-editar">
               <label>
                 <input
                   id="nombre"
-                  class="input"
+                  class="input-editar"
                   type="text"
                   placeholder=""
                   required=""
@@ -123,7 +123,7 @@
               <label>
                 <input
                   id="descripcion"
-                  class="input"
+                  class="input-editar"
                   type="text"
                   placeholder=""
                   required=""
@@ -135,7 +135,7 @@
               <label>
                 <input
                   id="estado"
-                  class="input"
+                  class="input-editar"
                   type="text"
                   placeholder=""
                   required=""
@@ -147,12 +147,12 @@
             
             <button
               type="button"
-              class="btn-modal-cancelar"
+              class="btn-modal-cancelar-editar"
               @click="showModalEdit = false"
             >
               Cancelar
             </button>
-            <button type="submit" class="btn-modal-save" @click="updateTask(editedTask.id)">
+            <button type="submit" class="btn-modal-save-editar" @click="updateTask(editedTask.id)">
               Guardar
             </button>
           </form>

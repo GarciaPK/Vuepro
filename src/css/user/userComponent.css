@@ -1,7 +1,8 @@
-.container{
+.container-user{
 height: 100%;
+width: 100%;
 position: fixed;
-margin-top: 130px;
+margin-top: 30px;
 }
 
 .tittle{
@@ -31,29 +32,29 @@ transition: 0.3s;
 width: 400px;
 }
 
-.container table{
+.container-user table{
 width: 100%;
 height: auto;
 padding: 20px;
 border-radius: 15px;
 }
 
-.container thead{
+.container-user thead{
 background: black;
 color: white;
 }
 
-.container tbody{
+.container-user tbody{
 background: rgb(231, 231, 231);
 }
 
-.table{
+.tablee{
 background: rgb(255, 255, 255);
 width: 75%;
 height: 90%;
 padding: 20px;
 border-radius: 20px;
-margin-left: -220px;
+margin-left: 50px;
 margin-top: 0px;
 }
 
@@ -291,14 +292,14 @@ left: 50%;
 transform: translate(-50%, -50%);
 background: white;
 padding: 30px;
-width: 800px;
-height: 500px;
+width: 700px;
+height: 270px;
 border-radius: 25px;
 box-shadow: 0 0 10px 5px rgb(193, 193, 193);
 z-index: 101;
 }
 
-.form {
+.form-editar {
 display: flex;
 flex-direction: column;
 gap: 10px;
@@ -311,18 +312,18 @@ color: #000000;
 margin-top: -20px;
 }
 
-.flex {
+.flex-editar {
 display: flex;
 width: 100%;
 gap: 16px;
 margin-bottom: 15px;
 }
 
-.form label {
+.form-editar label {
 position: relative;
 }
 
-.form label .input {
+.form-editar label .input-editar {
 background-color: #ffffff;
 border-bottom: 1px solid #00bfff;
 color: #000000;
@@ -332,7 +333,7 @@ outline: 0;
 border-radius: 10px;
 }
 
-.form label .input + span {
+.form-editar label .input-editar + span {
 color: rgba(0, 0, 0, 0.5);
 position: absolute;
 left: 10px;
@@ -342,53 +343,53 @@ cursor: text;
 transition: 0.3s ease;
 }
 
-.form label .input:placeholder-shown + span {
+.form-editar label .input-editar:placeholder-shown + span {
 top: 12.5px;
 font-size: 0.9em;
 }
 
-.form label .input:focus + span,
-.form label .input:valid + span {
+.form-editar label .input-editar:focus + span,
+.form-editar label .input-editar:valid + span {
 color: #00bfff;
 top: 0px;
 font-size: 0.7em;
 font-weight: 600;
 }
 
-.input {
+.input-editar {
 font-size: medium;
 }
 
-.btn-modal-cancelar{
+.btn-modal-cancelar-editar{
 background: rgb(255, 255, 255);
 color: red;
 width: 90px;
 padding: 10px 12px;
 border-radius: 25px;
-margin-left: 72%;
+margin-left: 65%;
 margin-top: 20px;
 border: 1px solid red;
 }
 
-.btn-modal-cancelar:hover{
+.btn-modal-cancelar-editar:hover{
 background: red;
 color: white;
 box-shadow: 0 0 5px 2px red;
 
 }
 
-.btn-modal-save{
+.btn-modal-save-editar{
 background: rgb(255, 255, 255);
 color: green;
 width: 90px;
 padding: 10px 15px;
 border-radius: 25px;
-margin-left: 87%;
+margin-left: 82%;
 margin-top: -56px;
 border: 1px solid green;
 }
 
-.btn-modal-save:hover{
+.btn-modal-save-editar:hover{
 background: green;
 color: white;
 box-shadow: 0 0 5px 2px green;

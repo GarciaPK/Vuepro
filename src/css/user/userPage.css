@@ -1,8 +1,10 @@
 .component-user{
   background: rgb(237, 237, 237);
   margin-left: 250px;
-  height: 773px;
-  margin-top: -773px;
+  height: 100%;
+  width: 82%;
+  margin-top: -641px;
+  position: fixed;
 }
 
 .btn-home {
@@ -31,26 +33,29 @@
     margin-right: 10px;
   }
   
-  .btn-exit {
-    width: auto;
+  .logout{
+    width: 80px;
     height: 50px;
   }
-  
-  .btn-exit a {
-    font-size: 20px;
-    margin-left: 5px;
-    text-decoration: none;
-    color: white;
+
+  .btnexit {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .btnexit:hover
+  {
+    transition: 0.25s;
+    background: rgb(145, 0, 0);
+    box-shadow: 0 0 5px 5px rgb(145, 0, 0);
   }
   
-  .exit {
-    margin-top: 0px;
-    width: 25px;
-    height: 25px;
-  }
-  
-  .exit a{
-    text-align: center;
+  .imgexit {
+    margin-top: -10px;
+    margin-left: -15px;
+    width: 40px;
+    height: 40px;
   }
   
   .flecha {

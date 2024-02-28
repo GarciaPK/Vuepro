@@ -22,8 +22,6 @@
           </button>
           <ul v-if="isDropdownOpen1" class="dropdown-menu">
             <li><a href="/user/tarea">Listar Tareas</a></li>
-            <li><a href="">Subopción 2</a></li>
-            <li><a href="#">Subopción 3</a></li>
           </ul>
         </div>
         <div :class="{ 'dropdown-open': isDropdownOpen2 }" class="dropdown">
@@ -45,9 +43,8 @@
       <br>
       <hr />
       <div class="logout">
-        <button class="btn-exit" @click="logout">
-          <img src="../assets/cerrar-sesion (1).png" align="left" class="exit" /><a href="/"
-            >EXIT</a
+        <button class="btnexit" @click="logout">
+          <a href="/"><img class="imgexit" src="../assets/exit.png" align="center" /></a
           >
         </button>
       </div>

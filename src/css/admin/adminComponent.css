@@ -1,7 +1,9 @@
-.container{
-  height: 100%;
-  position: fixed;
-  margin-top: 130px;
+.container-admin{
+  width: 100%;
+    height: 700px;
+    display: fixed;
+    margin-left: 20%;
+    margin-top: 0;
 }
 
 .tittle{
@@ -9,30 +11,33 @@
   text-align: left;
   }
 
-.container table{
+.container-admin table{
     width: 100%;
     height: auto;
     padding: 20px;
     border-radius: 15px;
 }
 
-.container thead{
+.container-admin thead{
     background: black;
     color: white;
 }
 
-.container tbody{
-    background: rgb(231, 231, 231);
+.container-admin tbody tr{
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.table{
+.container-admin tbody tr:nth-of-type(even) { background-color: #f5f5f5; }
+
+.tablee{
   background: rgb(255, 255, 255);
-  width: 75%;
-  height: 90%;
+  box-shadow: 0 0 10px 1px rgb(226, 226, 226);
+  width: 90%;
+  height: 85%;
   padding: 20px;
   border-radius: 20px;
-  margin-left: -220px;
-  margin-top: 0px;
+  margin-left: -150px;
+  margin-top: 2%;
 }
 
 .btn img{
@@ -51,21 +56,19 @@ cursor: pointer;
 line-height: 1.5;
 transition: all .15s;
 border-radius: 4px;
-width: 40px;
+width: 60px;
 height: 40px;
 padding: 7.5px 20px;
 font-size: 1.125rem;
 color: #fff;
-background-color: #3FB27F;
-border-color: #3FB27F;
+background-color: rgb(32, 114, 255);
 margin-left: 88%;
 margin-top: -45px;
-border-radius: 25px;
+border-radius: 20px;
 }
 
 .btn:hover{
-box-shadow: 0 0 5px 2px gray;
-background: #3FB27F;
+background: rgb(0, 94, 255);
 }
 
 .editar{
@@ -90,7 +93,7 @@ background: #3FB27F;
     background-color: rgb(0, 191, 255);
 }
 
-.btn{
+/* .btn1{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,11 +113,13 @@ background: #3FB27F;
     margin-left: 90%;
     margin-top: -45px;
     border-radius: 25px;
-  }
+  } */
   
   h1{
     text-align: center;
   }
+
+  /*AGREGAR*/
 
 .modal-overlay-add{
     position: absolute;
@@ -236,8 +241,329 @@ background: #3FB27F;
     
   }
 
+  /*VISUALIZAR*/
+
+.modal-overlay-visu{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-visu{
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  width: 800px;
+  height: 470px;
+  border-radius: 25px;
+  z-index: 101;
+}
+
+.form-visu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 750px;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: -20px;
+}
+
+.flex-visu {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.form-visu label {
+  position: relative;
+}
+
+.form-visu label .input-visu {
+  background-color: #ffffff;
+  border-bottom: 1px solid #00d836;
+  color: #000000;
+  width: 100%;
+  padding: 20px 05px 05px 10px;
+  outline: 0;
+  border-radius: 10px;
+}
+
+.form-visu label .input-visu + span {
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form-visu label .input-visu:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.form-visu label .input-visu:focus + span,
+.form-visu label .input-visu:valid + span {
+  color: #00d836;
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input-visu {
+  font-size: medium;
+}
+
+.btn-modal-cancelar-visu{
+  background: rgb(255, 255, 255);
+  color: red;
+  width: 90px;
+  padding: 10px 12px;
+  border-radius: 25px;
+  margin-left: 72%;
+  margin-top: 20px;
+  border: 1px solid red;
+}
+
+.btn-modal-cancelar-visu:hover{
+  background: red;
+  color: white;
+  box-shadow: 0 0 5px 2px red;
+  
+}
+
+.btn-modal-save-visu{
+  background: rgb(255, 255, 255);
+  color: green;
+  width: 90px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-left: 87%;
+  margin-top: -56px;
+  border: 1px solid green;
+}
+
+.btn-modal-save-visu:hover{
+  background: green;
+  color: white;
+  box-shadow: 0 0 5px 2px green;
+  
+}
+
+/*VISUALIZAR*/
+
+.modal-overlay-edit{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-edit{
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  width: 800px;
+  height: 470px;
+  border-radius: 25px;
+  z-index: 101;
+}
+
+.form-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 750px;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: -20px;
+}
+
+.flex-edit {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.form-edit label {
+  position: relative;
+}
+
+.form-edit label .input-edit {
+  background-color: #ffffff;
+  border-bottom: 1px solid rgb(0, 238, 255);
+  color: #000000;
+  width: 100%;
+  padding: 20px 05px 05px 10px;
+  outline: 0;
+  border-radius: 10px;
+}
+
+.form-edit label .input-edit + span {
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form-edit label .input-edit:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.form-edit label .input-edit:focus + span,
+.form-edit label .input-edit:valid + span {
+  color: rgb(0, 238, 255);
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input-edit {
+  font-size: medium;
+}
+
+.btn-modal-cancelar-edit{
+  background: rgb(255, 255, 255);
+  color: red;
+  width: 90px;
+  padding: 10px 12px;
+  border-radius: 25px;
+  margin-left: 72%;
+  margin-top: 20px;
+  border: 1px solid red;
+}
+
+.btn-modal-cancelar-edit:hover{
+  background: red;
+  color: white;
+  box-shadow: 0 0 5px 2px red;
+  
+}
+
+.btn-modal-save-edit{
+  background: rgb(255, 255, 255);
+  color: green;
+  width: 90px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-left: 87%;
+  margin-top: -56px;
+  border: 1px solid green;
+}
+
+.btn-modal-save-edit:hover{
+  background: green;
+  color: white;
+  box-shadow: 0 0 5px 2px green;
+  
+}
+
+/*ELIMINAR*/
+
+.modal-overlay-delete{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-delete{
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  width: 350px;
+  height: 200px;
+  border-radius: 25px;
+  z-index: 101;
+}
+
+.form-delete {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 750px;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: -20px;
+}
+
+.btn-modal-cancelar-delete{
+  background: rgb(255, 255, 255);
+  color: red;
+  width: 90px;
+  padding: 10px 12px;
+  border-radius: 25px;
+  margin-left: 10%;
+  margin-top: 10px;
+  border: 1px solid red;
+}
+
+.btn-modal-cancelar-delete:hover{
+  background: red;
+  color: white;
+  box-shadow: 0 0 5px 2px red;
+  
+}
+
+.btn-modal-save-delete{
+  background: rgb(255, 255, 255);
+  color: green;
+  width: 90px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-left: 60%;
+  margin-top: -56px;
+  border: 1px solid green;
+}
+
+.btn-modal-save-delete:hover{
+  background: green;
+  color: white;
+  box-shadow: 0 0 5px 2px green;
+  
+}
 
 /*ids*/
+
+#id{
+  width: 100px;
+}
 
 #nombre{
     width: 300px;
@@ -247,7 +573,7 @@ background: #3FB27F;
     width: 200px;
 }
 
-#estado{
+#login{
     width: 150px;
 }
 
@@ -302,8 +628,8 @@ position: absolute;
   height: 40px;
   border-radius: 20px;
   margin-top: -40px;
-  border: 1px solid rgb(163, 163, 163);
-  padding-left: 10px;
+  border: 1px solid rgb(226, 226, 226);
+  padding-left: 9px;
   margin-left: -190px;
   }
   
@@ -318,7 +644,7 @@ position: absolute;
   }
 
 .pagination {
-  margin-top: 20px;
+  margin-top: 0px;
   width: 350px;
   text-align: center;
   margin-left: 32%;

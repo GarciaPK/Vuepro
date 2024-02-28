@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <div class="table">
+  <div class="container-admin">
+    <div class="tablee">
       <h1 class="tittle">Lista de Usuarios</h1>
       <input class="search" type="text" placeholder="Search" v-model="searchTerm" @keyup.enter="searchUser">
-      <button type="button" class="btn btn-primary" @click="showModal = true">
+      <button type="button" class="btn" @click="showModal = true">
         <img src="@/assets/boton-mas.png">
       </button>
       <table>
@@ -162,17 +162,17 @@
 
               <!--Formulario Editar Usuario  -->
               <transition name="fade">
-                <div class="modal-overlay" v-if="showModalEdit"></div>
+                <div class="modal-overlay-edit" v-if="showModalEdit"></div>
               </transition>
               <transition name="fade">
-                <div class="modal" v-if="showModalEdit">
-                  <form class="form">
+                <div class="modal-edit" v-if="showModalEdit">
+                  <form class="form-edit">
                     <h2>Editar Usuario</h2>
-                    <div class="flex">
+                    <div class="flex-edit">
                       <label>
                         <input
                           id="nombre"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -184,7 +184,7 @@
                       <label>
                         <input
                           id="documento"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -196,7 +196,7 @@
                       <label>
                         <input
                           id="login"
-                          class="input"
+                          class="input-edit"
                           type="email"
                           placeholder=""
                           required=""
@@ -205,11 +205,11 @@
                         <span>Login</span>
                       </label>
                     </div>
-                    <div class="flex">
+                    <div class="flex-edit">
                       <label>
                         <input
                           id="perfil"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -221,7 +221,7 @@
                       <label>
                         <input
                           id="estado"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -233,7 +233,7 @@
                       <label>
                         <input
                           id="punto-venta"
-                          class="input"
+                          class="input-edit"
                           type="email"
                           placeholder=""
                           required=""
@@ -243,11 +243,11 @@
                       </label>
                     </div>
 
-                    <div class="flex">
+                    <div class="flex-edit">
                       <label>
                         <input
                           id="team-leader"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -259,7 +259,7 @@
                       <label>
                         <input
                           id="gerente"
-                          class="input"
+                          class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
@@ -269,11 +269,11 @@
                       </label>
                     </div>
 
-                    <div class="flex">
+                    <div class="flex-edit">
                       <label>
                         <input
                           id="productos"
-                          class="input"
+                          class="input-edit"
                           type="password"
                           placeholder=""
                           required=""
@@ -284,7 +284,7 @@
                       <label>
                         <input
                           id="contrasena"
-                          class="input"
+                          class="input-edit"
                           type="password"
                           placeholder=""
                           required=""
@@ -296,12 +296,12 @@
                     
                     <button
                       type="button"
-                      class="btn-modal-cancelar"
+                      class="btn-modal-cancelar-edit"
                       @click="showModalEdit = false"
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save">
+                    <button type="submit" class="btn-modal-save-edit">
                       Guardar
                     </button>
                   </form>
@@ -310,29 +310,29 @@
 
               <!--Formulario Visualizar Usuario  -->
               <transition name="fade">
-                <div class="modal-overlay" v-if="showModalVisu"></div>
+                <div class="modal-overlay-visu" v-if="showModalVisu"></div>
               </transition>
               <transition name="fade">
-                <div class="modal" v-if="showModalVisu">
-                  <form class="form">
+                <div class="modal-visu" v-if="showModalVisu">
+                  <form class="form-visu">
                     <h2>Visualizar Usuario</h2>
-                    <div class="flex">
+                    <div class="flex-visu">
                       <label>
                         <input
                           id="nombre"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
                           v-model="nombre"
                         />
-                        <span>Nombres</span>
+                        <span>ID</span>
                       </label>
 
                       <label>
                         <input
                           id="documento"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
@@ -344,7 +344,7 @@
                       <label>
                         <input
                           id="login"
-                          class="input"
+                          class="input-visu"
                           type="email"
                           placeholder=""
                           required=""
@@ -353,11 +353,11 @@
                         <span>Login</span>
                       </label>
                     </div>
-                    <div class="flex">
+                    <div class="flex-visu">
                       <label>
                         <input
                           id="perfil"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
@@ -369,7 +369,7 @@
                       <label>
                         <input
                           id="estado"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
@@ -381,7 +381,7 @@
                       <label>
                         <input
                           id="punto-venta"
-                          class="input"
+                          class="input-visu"
                           type="email"
                           placeholder=""
                           required=""
@@ -391,11 +391,11 @@
                       </label>
                     </div>
 
-                    <div class="flex">
+                    <div class="flex-visu">
                       <label>
                         <input
                           id="team-leader"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
@@ -407,7 +407,7 @@
                       <label>
                         <input
                           id="gerente"
-                          class="input"
+                          class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
@@ -417,11 +417,11 @@
                       </label>
                     </div>
 
-                    <div class="flex">
+                    <div class="flex-visu">
                       <label>
                         <input
                           id="productos"
-                          class="input"
+                          class="input-visu"
                           type="password"
                           placeholder=""
                           required=""
@@ -432,7 +432,7 @@
                       <label>
                         <input
                           id="contrasena"
-                          class="input"
+                          class="input-visu"
                           type="password"
                           placeholder=""
                           required=""
@@ -444,35 +444,35 @@
                     
                     <button
                       type="button"
-                      class="btn-modal-cancelar"
+                      class="btn-modal-cancelar-visu"
                       @click="showModalVisu = false"
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save">
+                    <button type="submit" class="btn-modal-save-visu">
                       Guardar
                     </button>
                   </form>
                 </div>
               </transition>
 
-              <!--Formulario Visualizar Usuario  -->
+              <!--Formulario ELIMINAR Usuario  -->
               <transition name="fade">
-                <div class="modal-overlay" v-if="showModalAlert"></div>
+                <div class="modal-overlay-delete" v-if="showModalAlert"></div>
               </transition>
               <transition name="fade">
-                <div class="modal" v-if="showModalAlert">
-                  <form class="form">
-                    <h2>Visualizar Usuario</h2>
-                    
+                <div class="modal-delete" v-if="showModalAlert">
+                  <form class="form-delete">
+                    <h2>Eliminar Usuario</h2>
+                    <p>Seguro quieres elimininar la tarea</p>
                     <button
                       type="button"
-                      class="btn-modal-cancelar"
+                      class="btn-modal-cancelar-delete"
                       @click="showModalAlert = false"
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save"  @click="deleteUser(user.idu)">
+                    <button type="submit" class="btn-modal-save-delete"  @click="deleteUser(user.idu)">
                       Aceptar
                     </button>
                   </form>

@@ -6,12 +6,13 @@
         <p>Admin</p>
         <hr />
       </div>
-      <div class="menu">
-        <button @click="navigate('Inicio')" class="btn-home">
-          <img class="home" align="left" src="../assets/casa.png" /> <a href="/admin">Inicio</a>
+      <br>
+      <div class="menu-admin">
+        <button @click="navigate('Inicio')" class="btn-home-admin">
+          <img class="home-admin" align="left" src="../assets/casa.png" /> <a href="/admin">Inicio</a>
         </button>
-        <div :class="{ 'dropdown-open': isDropdownOpen1 }" class="dropdown">
-          <button @click="toggleDropdown(1)" class="btn-dropdown">
+        <div :class="{ 'dropdown-open': isDropdownOpen1 }" class="dropdown-admin">
+          <button @click="toggleDropdown(1)" class="btn-dropdown-admin">
             <img class="tareas" align="left" src="../assets/lista-de-tareas.png" />Usuarios
             <img
               class="flecha"
@@ -19,14 +20,14 @@
               src="../assets/flecha-hacia-abajo.png"
             />
           </button>
-          <ul v-if="isDropdownOpen1" class="dropdown-menu">
+          <ul v-if="isDropdownOpen1" class="dropdown-menu-admin">
             <li><a href="/admin/listar-usuarios">Listar Usuarios</a></li>
             <!-- <li><a href="#">tarea 2</a></li>
             <li><a href="#">tarea 3</a></li> -->
           </ul>
         </div>
-        <div :class="{ 'dropdown-open': isDropdownOpen2 }" class="dropdown">
-          <button @click="toggleDropdown(2)" class="btn-dropdown">
+        <div :class="{ 'dropdown-open': isDropdownOpen2 }" class="dropdown-admin">
+          <button @click="toggleDropdown(2)" class="btn-dropdown-admin">
             <img class="tareas" align="left" src="../assets/google-docs.png" /> Reportes
             <img
               class="flecha"
@@ -34,14 +35,14 @@
               src="../assets/flecha-hacia-abajo.png"
             />
           </button>
-          <ul v-if="isDropdownOpen2" class="dropdown-menu">
+          <ul v-if="isDropdownOpen2" class="dropdown-menu-admin">
             <li><a href="#">Subopción 1</a></li>
             <li><a href="#">Subopción 2</a></li>
             <li><a href="#">Subopción 3</a></li>
           </ul>
         </div>
-        <div :class="{ 'dropdown-open': isDropdownOpen3 }" class="dropdown">
-          <button @click="toggleDropdown(3)" class="btn-dropdown">
+        <div :class="{ 'dropdown-open': isDropdownOpen3 }" class="dropdown-admin">
+          <button @click="toggleDropdown(3)" class="btn-dropdown-admin">
             <img align="left" class="tareas" src="../assets/grupo.png" />Parametrización
             <img
               class="flecha"
@@ -49,7 +50,7 @@
               src="../assets/flecha-hacia-abajo.png"
             />
           </button>
-          <ul v-if="isDropdownOpen3" class="dropdown-menu">
+          <ul v-if="isDropdownOpen3" class="dropdown-menu-admin">
             <li><a href="#">Subopción 1</a></li>
             <li><a href="#">Subopción 2</a></li>
             <li><a href="#">Subopción 3</a></li>
@@ -59,9 +60,8 @@
       <br>
       <hr />
       <div class="logout">
-        <button class="btn-exit" @click="logout">
-          <img src="../assets/cerrar-sesion (1).png" align="left" class="exit" /><a href="/"
-            >EXIT</a
+        <button class="btnexit" @click="logout">
+          <a href="/"><img class="imgexit" src="../assets/exit.png" align="center" /></a
           >
         </button>
       </div>
