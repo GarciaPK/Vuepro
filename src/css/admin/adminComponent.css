@@ -27,6 +27,10 @@
   border-bottom: 1px solid #f0f0f0;
 }
 
+.container-admin tbody td{
+  padding: 7px;
+}
+
 .container-admin tbody tr:nth-of-type(even) { background-color: #f5f5f5; }
 
 .tablee{
@@ -581,8 +585,7 @@ background: rgb(0, 94, 255);
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin: 3px;
-  margin-top: 5px;
+  margin-left: 20px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -595,7 +598,6 @@ position: absolute;
 }
 
 .eliminar:hover{
-  box-shadow: 0 0 5px 2px rgb(255, 0, 0);
   background-color: rgb(255, 255, 255);
 }
 
@@ -603,8 +605,7 @@ position: absolute;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin: 3px;
-  margin-top: 5px;
+  margin-left: 22px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -617,7 +618,6 @@ position: absolute;
 }
 
 .visualizar:hover{
-  box-shadow: 0 0 5px 2px rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
 }
 
@@ -655,6 +655,7 @@ position: absolute;
   margin: 0 5px;
   cursor: pointer;
   padding: 7px 15px;
+  border-radius: 20px;
 }
 .pagination span {
   margin: 0 5px;

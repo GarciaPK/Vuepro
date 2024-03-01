@@ -1,20 +1,20 @@
 <!-- UserComponent.vue -->
 <template>
-  <div class="container-user">
-    <div class="tablee">
-      <h1 class="tittle" align="left">Lista de Tareas</h1>
-      <input class="search" type="text" placeholder="Search" v-model="searchTerm" @keyup.enter="searchTask">
-      <button type="button" class="btn" @click="showModal = true">
+  <div class="container-user1">
+    <div class="table-user">
+      <h1 class="tittle-user" align="left">Lista de Tareas</h1>
+      <input class="search-user" type="text" placeholder="Search" v-model="searchTerm" @keyup.enter="searchTask">
+      <button type="button" class="btn-user" @click="showModal = true">
         <img src="@/assets/boton-mas.png">
       </button>
       
       <table>
         <thead>
           <tr>
-            <th align="center" class="nombre">Nombre</th>
-            <th align="center" class="descripcion">Descripcion</th>
-            <th align="center" class="estado">Estado</th>
-            <th align="center" class="acciones">Acciones</th>
+            <th align="center" class="nombre-user">Nombre</th>
+            <th align="center" class="descripcion-user">Descripcion</th>
+            <th align="center" class="estado-user">Estado</th>
+            <th align="center" class="acciones-user">Acciones</th>
           </tr>
         </thead>
         <tbody>

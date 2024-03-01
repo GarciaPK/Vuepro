@@ -43,7 +43,7 @@
       <br>
       <hr />
       <div class="logout">
-        <button class="btnexit" @click="logout">
+        <button class="btnexit-user" @click="logout">
           <a href="/"><img class="imgexit" src="../assets/exit.png" align="center" /></a
           >
         </button>

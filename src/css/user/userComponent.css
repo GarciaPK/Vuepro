@@ -1,16 +1,27 @@
-.container-user{
+.container-user1{
 height: 100%;
 width: 100%;
 position: fixed;
 margin-top: 30px;
 }
 
-.tittle{
+.table-user{
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 10px 1px rgb(226, 226, 226);
+    width: 75%;
+    height: 90%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-top: 0px;
+    }
+
+.tittle-user{
 margin-left: 20px;
 text-align: left;
 }
 
-.search{
+.search-user{
 position: absolute;
 background: rgb(255, 255, 255);
 width: 70px;
@@ -22,9 +33,9 @@ padding-left: 10px;
 margin-left: -230px;
 }
 
-.search:focus, 
-.search:active,
-.search:hover{
+.search-user:focus, 
+.search-user:active,
+.search-user:hover{
 border: none;
 outline: none;
 box-shadow: 0px 2px 5px 2px rgb(165, 165, 165);
@@ -32,30 +43,73 @@ transition: 0.3s;
 width: 400px;
 }
 
-.container-user table{
+.container-user1 table{
 width: 100%;
 height: auto;
 padding: 20px;
+margin-bottom: 10px;
 border-radius: 15px;
 }
 
-.container-user thead{
+.container-user1 thead{
 background: black;
 color: white;
 }
 
-.container-user tbody{
-background: rgb(231, 231, 231);
+.container-user1 tbody td{
+    padding: 5px;
 }
 
-.tablee{
-background: rgb(255, 255, 255);
-width: 75%;
-height: 90%;
-padding: 20px;
-border-radius: 20px;
-margin-left: 50px;
-margin-top: 0px;
+.container-user1 tbody tr{
+border-bottom: 1px solid #f0f0f0;
+
+}
+
+.container-user1 tbody tr:nth-of-type(even) { 
+    background-color: #f5f5f5; 
+}
+
+.btn-user img{
+width: 30px;
+height: 30px;
+}
+
+.btn-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    line-height: 1.5;
+    transition: all .15s;
+    border-radius: 4px;
+    width: 60px;
+    height: 40px;
+    padding: 7.5px 20px;
+    font-size: 1.125rem;
+    color: #fff;
+    background-color: rgb(32, 114, 255);
+    margin-left: 88%;
+    margin-top: -45px;
+    border-radius: 25px;
+}
+
+.btn:hover{
+    background: rgb(32, 114, 255);
+    }
+
+.nombre-user{
+    width: 150px;
+}
+
+.acciones-user{
+    width: 100px;
+}
+
+.estado-user{
+    width: 120px;
 }
 
 .editar{
@@ -63,7 +117,6 @@ width: 10px;
 height: 10px;
 border-radius: 50%;
 margin: 3px;
-margin-top: 5px;
 background-color: rgb(0, 191, 255);
 }
 
@@ -84,9 +137,9 @@ background-color: rgb(0, 191, 255);
 width: 10px;
 height: 10px;
 border-radius: 50%;
-margin: 3px;
-margin-top: 5px;
+margin-bottom: 7%;
 background-color: rgb(255, 255, 255);
+margin-left: 20px;
 }
 
 .eliminar img{
@@ -97,367 +150,11 @@ width: 30px;
 height: 30px;
 }
 
-.eliminar:hover{
-box-shadow: 0 0 5px 2px rgb(255, 0, 0);
-background-color: rgb(255, 255, 255);
-}
-
-.btn img{
-width: 30px;
-height: 30px;
-}
-
-.nombre{
-    width: 150px;
-}
-
-.acciones{
-    width: 100px;
-}
-
-.estado{
-    width: 120px;
-}
-
-.btn{
-display: flex;
-justify-content: center;
-align-items: center;
-border: 1px solid;
-text-align: center;
-vertical-align: middle;
-cursor: pointer;
-line-height: 1.5;
-transition: all .15s;
-border-radius: 4px;
-width: 45px;
-height: 45px;
-padding: 7.5px 20px;
-font-size: 1.125rem;
-color: #fff;
-background-color: #3FB27F;
-border-color: #3FB27F;
-margin-left: 88%;
-margin-top: -45px;
-border-radius: 25px;
-}
-
-.btn:hover{
-box-shadow: 0 0 5px 2px gray;
-background: #3FB27F;
-}
-
 h1{
 text-align: center;
 }
 
-/*AGREGAR USUARIO*/
 
-.modal-overlay-add{
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-z-index: 99;
-background: rgba(0, 0, 0, 0.4);
-}
-
-.modal-add{
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-padding: 30px;
-width: 700px;
-height: 300px;
-border-radius: 25px;
-z-index: 101;
-}
-
-.form-add {
-display: flex;
-flex-direction: column;
-gap: 10px;
-max-width: 750px;
-padding: 10px;
-border-radius: 20px;
-position: relative;
-background-color: #ffffff;
-color: #000000;
-margin-top: -20px;
-}
-
-.flex-add {
-display: flex;
-width: 100%;
-gap: 16px;
-margin-bottom: 15px;
-}
-
-.form-add label {
-position: relative;
-}
-
-.form-add label .input-add {
-background-color: #ffffff;
-border-bottom: 1px solid #00d836;
-color: #000000;
-width: 100%;
-padding: 20px 05px 05px 10px;
-outline: 0;
-border-radius: 10px;
-}
-
-.form-add label .input-add + span {
-color: rgba(0, 0, 0, 0.5);
-position: absolute;
-left: 10px;
-top: 0px;
-font-size: 0.9em;
-cursor: text;
-transition: 0.3s ease;
-}
-
-.form-add label .input-add:placeholder-shown + span {
-top: 12.5px;
-font-size: 0.9em;
-}
-
-.form-add label .input-add:focus + span,
-.form-add label-add .input-add:valid + span {
-color: #00d836;
-top: 0px;
-font-size: 0.7em;
-font-weight: 600;
-}
-
-.input-add {
-font-size: medium;
-}
-
-.btn-modal-cancelar-add{
-background: rgb(255, 255, 255);
-color: red;
-width: 90px;
-padding: 10px 12px;
-border-radius: 25px;
-margin-left: 60%;
-margin-top: 20px;
-border: 1px solid red;
-}
-
-.btn-modal-cancelar-add:hover{
-background: red;
-color: white;
-box-shadow: 0 0 5px 2px red;
-
-}
-
-.btn-modal-save-add{
-background: rgb(255, 255, 255);
-color: green;
-width: 90px;
-padding: 10px 15px;
-border-radius: 25px;
-margin-left: 80%;
-margin-top: -56px;
-border: 1px solid green;
-}
-
-.btn-modal-save-add:hover{
-background: green;
-color: white;
-box-shadow: 0 0 5px 2px green;
-
-}
-
-/*EDITAR*/
-
-.modal-overlay-editar{
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-z-index: 100;
-background: rgba(0, 0, 0, 0.2);
-}
-
-.modal-editar{
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-padding: 30px;
-width: 700px;
-height: 270px;
-border-radius: 25px;
-box-shadow: 0 0 10px 5px rgb(193, 193, 193);
-z-index: 101;
-}
-
-.form-editar {
-display: flex;
-flex-direction: column;
-gap: 10px;
-max-width: 750px;
-padding: 10px;
-border-radius: 20px;
-position: relative;
-background-color: #ffffff;
-color: #000000;
-margin-top: -20px;
-}
-
-.flex-editar {
-display: flex;
-width: 100%;
-gap: 16px;
-margin-bottom: 15px;
-}
-
-.form-editar label {
-position: relative;
-}
-
-.form-editar label .input-editar {
-background-color: #ffffff;
-border-bottom: 1px solid #00bfff;
-color: #000000;
-width: 100%;
-padding: 20px 05px 05px 10px;
-outline: 0;
-border-radius: 10px;
-}
-
-.form-editar label .input-editar + span {
-color: rgba(0, 0, 0, 0.5);
-position: absolute;
-left: 10px;
-top: 0px;
-font-size: 0.9em;
-cursor: text;
-transition: 0.3s ease;
-}
-
-.form-editar label .input-editar:placeholder-shown + span {
-top: 12.5px;
-font-size: 0.9em;
-}
-
-.form-editar label .input-editar:focus + span,
-.form-editar label .input-editar:valid + span {
-color: #00bfff;
-top: 0px;
-font-size: 0.7em;
-font-weight: 600;
-}
-
-.input-editar {
-font-size: medium;
-}
-
-.btn-modal-cancelar-editar{
-background: rgb(255, 255, 255);
-color: red;
-width: 90px;
-padding: 10px 12px;
-border-radius: 25px;
-margin-left: 65%;
-margin-top: 20px;
-border: 1px solid red;
-}
-
-.btn-modal-cancelar-editar:hover{
-background: red;
-color: white;
-box-shadow: 0 0 5px 2px red;
-
-}
-
-.btn-modal-save-editar{
-background: rgb(255, 255, 255);
-color: green;
-width: 90px;
-padding: 10px 15px;
-border-radius: 25px;
-margin-left: 82%;
-margin-top: -56px;
-border: 1px solid green;
-}
-
-.btn-modal-save-editar:hover{
-background: green;
-color: white;
-box-shadow: 0 0 5px 2px green;
-
-}
-
-
-/*ELIMINAR*/
-
-.modal-overlay-eliminar{
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-z-index: 100;
-background: rgba(0, 0, 0, 0.1);
-}
-
-.modal-eliminar{
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-padding: 30px;
-width: 350px;
-height: 200px;
-border-radius: 25px;
-box-shadow: 0 0 10px 10px rgba(123, 123, 123, 0.898);
-z-index: 101;
-}
-
-.btn-modal-cancelar{
-background: rgb(255, 255, 255);
-color: red;
-width: 90px;
-padding: 10px 12px;
-border-radius: 25px;
-margin-left: 10%;
-margin-top: 20px;
-border: 1px solid red;
-}
-
-.btn-modal-cancelar:hover{
-background: red;
-color: white;
-box-shadow: 0 0 5px 2px red;
-
-}
-
-.btn-modal-save{
-background: rgb(255, 255, 255);
-color: green;
-width: 90px;
-padding: 10px 15px;
-border-radius: 25px;
-margin-left: 55%;
-margin-top: -56px;
-border: 1px solid green;
-}
-
-.btn-modal-save:hover{
-background: green;
-color: white;
-box-shadow: 0 0 5px 2px green;
-
-}
 
 
 .pagination {
@@ -472,8 +169,317 @@ color: white;
 margin: 0 5px;
 cursor: pointer;
 padding: 7px 15px;
+border-radius: 20px;
 }
 .pagination span {
 margin: 0 5px;
 font-weight: bold;
 }
+
+/*AGREGAR USUARIO*/
+
+.modal-overlay-add{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-add{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 700px;
+    height: 300px;
+    border-radius: 25px;
+    z-index: 101;
+    }
+    
+    .form-add {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 750px;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #ffffff;
+    color: #000000;
+    margin-top: -20px;
+    }
+    
+    .flex-add {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 15px;
+    }
+    
+    .form-add label {
+    position: relative;
+    }
+    
+    .form-add label .input-add {
+    background-color: #ffffff;
+    border-bottom: 1px solid #00d836;
+    color: #000000;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border-radius: 10px;
+    }
+    
+    .form-add label .input-add + span {
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+    }
+    
+    .form-add label .input-add:placeholder-shown + span {
+    top: 12.5px;
+    font-size: 0.9em;
+    }
+    
+    .form-add label .input-add:focus + span,
+    .form-add label-add .input-add:valid + span {
+    color: #00d836;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+    }
+    
+    .input-add {
+    font-size: medium;
+    }
+    
+    .btn-modal-cancelar-add{
+    background: rgb(255, 255, 255);
+    color: red;
+    width: 90px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    margin-left: 60%;
+    margin-top: 20px;
+    border: 1px solid red;
+    }
+    
+    .btn-modal-cancelar-add:hover{
+    background: red;
+    color: white;
+    box-shadow: 0 0 5px 2px red;
+    
+    }
+    
+    .btn-modal-save-add{
+    background: rgb(255, 255, 255);
+    color: green;
+    width: 90px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    margin-left: 80%;
+    margin-top: -56px;
+    border: 1px solid green;
+    }
+    
+    .btn-modal-save-add:hover{
+    background: green;
+    color: white;
+    box-shadow: 0 0 5px 2px green;
+    
+    }
+    
+    /*EDITAR*/
+    
+    .modal-overlay-editar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-editar{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 700px;
+    height: 270px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px 5px rgb(193, 193, 193);
+    z-index: 101;
+    }
+    
+    .form-editar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 750px;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #ffffff;
+    color: #000000;
+    margin-top: -20px;
+    }
+    
+    .flex-editar {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 15px;
+    }
+    
+    .form-editar label {
+    position: relative;
+    }
+    
+    .form-editar label .input-editar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #00bfff;
+    color: #000000;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border-radius: 10px;
+    }
+    
+    .form-editar label .input-editar + span {
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+    }
+    
+    .form-editar label .input-editar:placeholder-shown + span {
+    top: 12.5px;
+    font-size: 0.9em;
+    }
+    
+    .form-editar label .input-editar:focus + span,
+    .form-editar label .input-editar:valid + span {
+    color: #00bfff;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+    }
+    
+    .input-editar {
+    font-size: medium;
+    }
+    
+    .btn-modal-cancelar-editar{
+    background: rgb(255, 255, 255);
+    color: red;
+    width: 90px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    margin-left: 65%;
+    margin-top: 20px;
+    border: 1px solid red;
+    }
+    
+    .btn-modal-cancelar-editar:hover{
+    background: red;
+    color: white;
+    box-shadow: 0 0 5px 2px red;
+    
+    }
+    
+    .btn-modal-save-editar{
+    background: rgb(255, 255, 255);
+    color: green;
+    width: 90px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    margin-left: 82%;
+    margin-top: -56px;
+    border: 1px solid green;
+    }
+    
+    .btn-modal-save-editar:hover{
+    background: green;
+    color: white;
+    box-shadow: 0 0 5px 2px green;
+    
+    }
+    
+    
+    /*ELIMINAR*/
+    
+    .modal-overlay-eliminar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-eliminar{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 350px;
+    height: 200px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px 10px rgba(123, 123, 123, 0.898);
+    z-index: 101;
+    }
+    
+    .btn-modal-cancelar{
+    background: rgb(255, 255, 255);
+    color: red;
+    width: 90px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-top: 20px;
+    border: 1px solid red;
+    }
+    
+    .btn-modal-cancelar:hover{
+    background: red;
+    color: white;
+    box-shadow: 0 0 5px 2px red;
+    
+    }
+    
+    .btn-modal-save{
+    background: rgb(255, 255, 255);
+    color: green;
+    width: 90px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    margin-left: 55%;
+    margin-top: -56px;
+    border: 1px solid green;
+    }
+    
+    .btn-modal-save:hover{
+    background: green;
+    color: white;
+    box-shadow: 0 0 5px 2px green;
+    
+    }
