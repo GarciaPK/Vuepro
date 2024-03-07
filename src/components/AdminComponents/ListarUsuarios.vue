@@ -1,5 +1,4 @@
 <template>
-  <div class="container-admin">
     <div class="tablee">
       <h1 class="tittle">Lista de Usuarios</h1>
       <input class="search" type="text" placeholder="Search" v-model="searchTerm" @keyup.enter="searchUser">
@@ -19,7 +18,7 @@
         </thead>
         <tbody>
           <!-- <tr v-for="user in users" :key="user.id"> -->
-          <tr v-for="user in paginatedTasks" :key="user.idu">
+          <tr v-for="user in paginatedTasks" :key="user.usu_idagente">
             <td align="left" class="pl-3">{{ user.usu_idagente }}</td>
             <td align="left" class="pl-3">{{ user.usu_nombre }}</td>
             <td align="left" class="pl-3">{{ user.usu_documento }}</td>
@@ -30,11 +29,11 @@
                 <img src="@/assets/boligrafo.png" />
               </button>
 
-              <button class="eliminar" @click="showModalAlert = true">
+              <button class="eliminar" @click="deleteUser(user.usu_idagente)">
                 <img src="@/assets/borrar.png" />
               </button>
 
-              <button class="visualizar" @click="showModalVisu = true">
+              <button class="visualizar" @click="fetchUsersForm(user.usu_idagente)">
                 <img src="@/assets/ojo.png" />
               </button>
 
@@ -166,7 +165,7 @@
               </transition>
               <transition name="fade">
                 <div class="modal-edit" v-if="showModalEdit">
-                  <form class="form-edit">
+                  <form class="form-edit" >
                     <h2>Editar Usuario</h2>
                     <div class="flex-edit">
                       <label>
@@ -176,36 +175,60 @@
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="nombre"
+                          v-model="User.nombre"
                         />
-                        <span>Nombres</span>
+                        <span>Nombres {{ user.usu_nombre }}</span>
                       </label>
 
                       <label>
                         <input
                           id="documento"
                           class="input-edit"
-                          type="text"
+                          type="number"
                           placeholder=""
                           required=""
-                          v-model="documento"
+                          v-model="User.documento"
                         />
                         <span>Documento</span>
                       </label>
 
                       <label>
                         <input
-                          id="login"
+                          id="estado"
                           class="input-edit"
-                          type="email"
+                          type="number"
                           placeholder=""
                           required=""
-                          v-model="login"
+                          v-model="User.estado"
                         />
-                        <span>Login</span>
+                        <span>Estado</span>
                       </label>
                     </div>
                     <div class="flex-edit">
+                      <label>
+                        <input
+                          id="contrasena"
+                          class="input-edit"
+                          type="text"
+                          placeholder=""
+                          required=""
+                          v-model="User.contrasena"
+                        />
+                        <span>Contraseña</span>
+                      </label>
+
+                      <label>
+                        <input
+                          id="login"
+                          class="input-edit"
+                          type="text"
+                          placeholder=""
+                          required=""
+                          v-model="User.login"
+                        />
+                        <span>Login</span>
+                      </label>
+
                       <label>
                         <input
                           id="perfil"
@@ -213,87 +236,36 @@
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="perfil"
+                          v-model="User.perfil"
                         />
-                        <span>Perfil</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="estado"
-                          class="input-edit"
-                          type="text"
-                          placeholder=""
-                          required=""
-                          v-model="estado"
-                        />
-                        <span>Estado</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="punto-venta"
-                          class="input-edit"
-                          type="email"
-                          placeholder=""
-                          required=""
-                          v-model="punto_venta"
-                        />
-                        <span>Punto de Venta</span>
+                        <span>Cargo</span>
                       </label>
                     </div>
 
                     <div class="flex-edit">
                       <label>
                         <input
-                          id="team-leader"
+                          id="login_new"
                           class="input-edit"
                           type="text"
                           placeholder=""
-                          required=""
-                          v-model="team_leader"
+                          v-model="User.login_new"
                         />
-                        <span>Team Leader</span>
+                        <span>New Login</span>
                       </label>
 
                       <label>
                         <input
-                          id="gerente"
+                          id="login_temp"
                           class="input-edit"
                           type="text"
                           placeholder=""
-                          required=""
-                          v-model="gerente"
+                          v-model="User.login_temp"
                         />
-                        <span>Gerente</span>
+                        <span>Login Temp</span>
                       </label>
                     </div>
 
-                    <div class="flex-edit">
-                      <label>
-                        <input
-                          id="productos"
-                          class="input-edit"
-                          type="password"
-                          placeholder=""
-                          required=""
-                          v-model="productos"
-                        />
-                        <span>Productos</span>
-                      </label>
-                      <label>
-                        <input
-                          id="contrasena"
-                          class="input-edit"
-                          type="password"
-                          placeholder=""
-                          required=""
-                          v-model="contrasena"
-                        />
-                        <span>Contraseña</span>
-                      </label>
-                    </div>
-                    
                     <button
                       type="button"
                       class="btn-modal-cancelar-edit"
@@ -301,7 +273,9 @@
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save-edit">
+                    <button type="submit" class="btn-modal-save-edit"
+                      @click="updateUser(user.usu_idagente)" 
+                    >
                       Guardar
                     </button>
                   </form>
@@ -319,138 +293,119 @@
                     <div class="flex-visu">
                       <label>
                         <input
+                          id="documento"
+                          class="input-visu"
+                          type="number"
+                          placeholder=""
+                          required=""
+                          v-model="documento"
+                          :disabled="isDisabled"
+                        />
+                        <span>{{ User.usu_documento }}</span>
+                      </label>
+
+                      <label>
+                        <input
                           id="nombre"
                           class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
                           v-model="nombre"
+                          :disabled="isDisabled"
                         />
-                        <span>ID</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="documento"
-                          class="input-visu"
-                          type="text"
-                          placeholder=""
-                          required=""
-                          v-model="documento"
-                        />
-                        <span>Documento</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="login"
-                          class="input-visu"
-                          type="email"
-                          placeholder=""
-                          required=""
-                          v-model="login"
-                        />
-                        <span>Login</span>
-                      </label>
-                    </div>
-                    <div class="flex-visu">
-                      <label>
-                        <input
-                          id="perfil"
-                          class="input-visu"
-                          type="text"
-                          placeholder=""
-                          required=""
-                          v-model="perfil"
-                        />
-                        <span>Perfil</span>
+                        <span>{{ User.usu_nombre }}</span>
                       </label>
 
                       <label>
                         <input
                           id="estado"
                           class="input-visu"
-                          type="text"
+                          type="number"
                           placeholder=""
                           required=""
                           v-model="estado"
+                          :disabled="isDisabled"
                         />
-                        <span>Estado</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="punto-venta"
-                          class="input-visu"
-                          type="email"
-                          placeholder=""
-                          required=""
-                          v-model="punto_venta"
-                        />
-                        <span>Punto de Venta</span>
+                        <span>{{ User.usu_estado }}</span>
                       </label>
                     </div>
 
                     <div class="flex-visu">
                       <label>
                         <input
-                          id="team-leader"
+                          id="passwd"
                           class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="team_leader"
+                          v-model="passwd"
+                          :disabled="isDisabled"
                         />
-                        <span>Team Leader</span>
+                        <span>{{ User.usu_passwd }}</span>
                       </label>
 
                       <label>
                         <input
-                          id="gerente"
+                          id="login"
                           class="input-visu"
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="gerente"
+                          v-model="login"
+                          :disabled="isDisabled"
                         />
-                        <span>Gerente</span>
+                        <span>{{ User.usu_login }}</span>
+                      </label>
+
+                      <label>
+                        <input
+                          id="cod_cargo"
+                          class="input-visu"
+                          type="text"
+                          placeholder=""
+                          required=""
+                          v-model="cod_cargo"
+                          :disabled="isDisabled"
+                        />
+                        <span>{{ User.cau_codcargo }}</span>
                       </label>
                     </div>
 
                     <div class="flex-visu">
                       <label>
                         <input
-                          id="productos"
+                          id="login_new"
                           class="input-visu"
-                          type="password"
+                          type="text"
                           placeholder=""
                           required=""
-                          v-model="productos"
+                          v-model="login_new"
+                          :disabled="isDisabled"
                         />
-                        <span>Productos</span>
+                        <span>{{ User.usu_login_new }}</span>
                       </label>
+
                       <label>
                         <input
-                          id="contrasena"
+                          id="login_temp"
                           class="input-visu"
-                          type="password"
+                          type="text"
                           placeholder=""
                           required=""
-                          v-model="contrasena"
+                          v-model="login_temp"
+                          :disabled="isDisabled"
                         />
-                        <span>Contraseña</span>
+                        <span>{{ User.usu_logintemp }}</span>
                       </label>
                     </div>
                     
                     <button
                       type="button"
-                      class="btn-modal-cancelar-visu"
+                      class="btn-modal-save-visu"
                       @click="showModalVisu = false"
                     >
-                      Cancelar
-                    </button>
-                    <button type="submit" class="btn-modal-save-visu">
-                      Guardar
+                      Aceptar
                     </button>
                   </form>
                 </div>
@@ -472,7 +427,8 @@
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save-delete"  @click="deleteUser(user.idu)">
+                    <button type="submit" class="btn-modal-save-delete"
+                     @click="deleteUser(user.usu_idagente)">
                       Aceptar
                     </button>
                   </form>
@@ -489,7 +445,6 @@
         <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -498,25 +453,26 @@ import axios from "axios";
 export default {
   data() {
     return {
+      isDisabled: true,
       users: [],
+      user:[],
       showModal: false,
       showModalEdit: false,
       showModalVisu: false,
       showModalAlert: false,
       searchTerm: '', //buscador
-      //editedUser: {
-        //   id: '',
-        //   nombre: '',
-        //   documento: '',
-        //   login: '',
-        //   perfil: '',
-        //   estado: '',
-        //   punto_venta: '',
-        //   team_leader: '',
-        //   gerente: '',
-        //   productos: '',
-        //   contrasena: '',
-      //},
+      User: {
+          documento: '',
+          nombre: '',
+          estado: '',
+          contrasena: '',
+          login: '',
+          perfil: '',
+          login_new: '',
+          login_temp: '',
+      },
+      usu_idagente: '',
+
       currentPage: 1, // Página actual
       pageSize: 10, // Tamaño de página
     };
@@ -539,6 +495,7 @@ export default {
   },
   mounted() {
     this.fetchUsers();
+    this.fetchUsersForm();
   },
   methods: {
     async fetchUsers() {
@@ -549,6 +506,18 @@ export default {
         console.error("Error al obtener los usuarios:", error);
       }
     },
+
+    // Método para cargar y mostrar los datos del usuario en el modal
+    async fetchUsersForm(usu_idagente) {
+      try {
+        const response = await axios.get(`http://localhost:5000/view-user/${usu_idagente}`);
+        this.User = response.data; // Asegúrate de que esta asignación sea correcta
+        this.showModalVisu = true; // Abre el modal de visualización
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    },
+    
 
     async addUser() {
       try {
@@ -568,44 +537,103 @@ export default {
         console.error("Error al agregar usuario:", error);
       }
     },
-    //actualizar tarea (no funciona aun)
-    // async updateTask(id) {
+
+//_____________________________________________________________________
+    
+    // async updateUser(id) {
     //   try {
-    //     await axios.put(`http://localhost:5000/update-tarea/${id}`, {
-          
-    //       nombre: this.editedUser.nombre,
-    //       descripcion: this.editedUser.descripcion,
-    //       estado: this.editedUser.estado,
+    //     await axios.put(`http://localhost:5000/update-user/${id}`, {
+    //      
+    //        id: this.users.id,
+//
     //     });
     //     this.showModalEdit = false; // Cerrar el modal de edición
     //     this.fetchTasks(); // Actualizar la lista de tareas
     //   } catch (error) {
-    //     console.error("Error al actualizar la tarea:", error);
+    //     console.error("Error al actualizar al:", error);
     //   }
     // },
 
+    ////async updateUser(id) {
+      //try {
+      //  // Verificar que todos los campos estén definidos
+      //  if (this.users.documento && this.users.nombre /* && otros campos */) {
+     //     await axios.put(`http://localhost:5000/update-user/${id}`, {
+      //      documento: this.users.documento,
+      //      nombre: this.users.nombre,
+      //      estado: this.users.estado,
+      //      contrasena: this.users.contrasena,
+      //      login: this.users.login,
+      //      login_new: this.users.perfil,
+      //      login_temp: this.users.login_temp,
+      //    });
+      //    this.showModalEdit = false;
+      //    this.fetchTasks();
+      //  } else {
+      //    console.error("Error: Algunos datos no están definidos");
+      //  }
+    //  } catch (error) {
+    //    console.error("Error al actualizar la tarea:", error);
+    //  }
+    //},
+
+    async updateUser(usu_idagente) {
+      try {
+        const { documento, nombre, estado, contrasena, login, perfil, login_temp, login_new } = this.User;
+
+        // Verificar que todos los campos estén definidos
+        if (documento && nombre && estado && contrasena && login && perfil && login_temp && login_new) {
+          await axios.put(`http://localhost:5000/update-user/${usu_idagente}`,{
+            documento: this.documento,
+            nombre: this.nombre,
+            estado: this.estado,
+            contrasena: this.contrasena,
+            login: this.login,
+            perfil: this.perfil,
+            login_temp: this.login_new,
+            login_new: this.login_temp,
+          });
+
+          this.showModalEdit = false;
+          
+        } else {
+          console.log("Error: Algunos datos no están definidos");
+        }
+
+        this.fetchUsersForm();
+      } catch (error) {
+        console.log("Error al actualizar la tarea:", error);
+
+        // Imprimir detalles específicos de la respuesta si está disponible
+        if (error.response) {
+          console.log("Detalles de la respuesta:", error.response.data);
+        }
+      }
+    },
+
+  
+
     //eliminar tarea de la BD
-    // async deleteUser(id_u) {
+    // async deleteUser(usu_idagente) {
     //   try {
-    //     await axios.delete(`http://localhost:5000/delete-user/${id_u}`);
+    //     await axios.delete(`http://localhost:5000/delete-user/${usu_idagente}`);
     //     // Eliminar la tarea de la lista localmente
-    //     this.users = this.users.filter(user => user.id !== id_u);
+    //     this.users = this.users.filter(user => user.usu_idagente !== usu_idagente);
     //     console.log("Usuario eliminada correctamente");
     //   } catch (error) {
     //     console.error("Error al eliminar la tarea:", error);
     //   }
     // },
 
-    async deleteUser(idu) {
-      try {
-        await axios.delete(`http://localhost:5000/delete-users/${idu}`);
-        // Actualizar la lista de tareas después de eliminar
-        this.fetchTasks();
-        console.log("Tarea eliminada correctamente");
-      } catch (error) {
-        console.error("Error al eliminar la tarea:", error);
-      }
-    },
+    async deleteUser(usu_idagente) {
+    try {
+      await axios.delete(`http://localhost:5000/delete-user/${usu_idagente}`);
+      this.showModalAlert = true; // Abre el modal de visualización
+      console.log("Usuario eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar el usuario:", error);
+    }
+  },
 
     //buscar tarea por su nombre
     async searchUser() {
@@ -619,7 +647,7 @@ export default {
       }
     },
     
-    // editTask(tarea) {
+    //editTask(tarea) {
     //   // Establecer la tarea editada para mostrarla en el modal de edición
     //   this.editedUser = { tarea };
     //   // Mostrar el modal de edición
