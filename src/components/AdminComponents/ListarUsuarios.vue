@@ -25,7 +25,7 @@
             <td align="left" class="pl-3">{{ user.usu_login }}</td>
             <td align="left" class="pl-3">{{ user.usu_estado }}</td>
             <td>
-              <button class="editar" @click="showModalEdit = true">
+              <button class="editar" @click="prepareEdit(user.usu_idagente)">
                 <img src="@/assets/boligrafo.png" />
               </button>
 
@@ -74,7 +74,7 @@
                         <input
                           id="estado"
                           class="input-add"
-                          type="number"
+                          type="text"
                           placeholder=""
                           required=""
                           v-model="estado"
@@ -165,9 +165,22 @@
               </transition>
               <transition name="fade">
                 <div class="modal-edit" v-if="showModalEdit">
-                  <form class="form-edit" >
+                  <form @submit.prevent="updateUser" class="form-edit" >
                     <h2>Editar Usuario</h2>
                     <div class="flex-edit">
+
+                      <label>
+                        <input
+                          id="documento"
+                          class="input-edit"
+                          type="text"
+                          placeholder=""
+                          required=""
+                          v-model="editUser.usu_documento"
+                        />
+                        <span>Documento</span>
+                      </label>
+
                       <label>
                         <input
                           id="nombre"
@@ -175,31 +188,19 @@
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="User.nombre"
+                          v-model="editUser.usu_nombre"
                         />
-                        <span>Nombres {{ user.usu_nombre }}</span>
-                      </label>
-
-                      <label>
-                        <input
-                          id="documento"
-                          class="input-edit"
-                          type="number"
-                          placeholder=""
-                          required=""
-                          v-model="User.documento"
-                        />
-                        <span>Documento</span>
+                        <span>Nombre Completo</span>
                       </label>
 
                       <label>
                         <input
                           id="estado"
                           class="input-edit"
-                          type="number"
+                          type="text"
                           placeholder=""
                           required=""
-                          v-model="User.estado"
+                          v-model="editUser.usu_estado"
                         />
                         <span>Estado</span>
                       </label>
@@ -212,7 +213,7 @@
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="User.contrasena"
+                          v-model="editUser.usu_passwd"
                         />
                         <span>Contraseña</span>
                       </label>
@@ -224,19 +225,19 @@
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="User.login"
+                          v-model="editUser.usu_login"
                         />
                         <span>Login</span>
                       </label>
 
                       <label>
                         <input
-                          id="perfil"
+                          id="cargo"
                           class="input-edit"
                           type="text"
                           placeholder=""
                           required=""
-                          v-model="User.perfil"
+                          v-model="editUser.cau_codcargo"
                         />
                         <span>Cargo</span>
                       </label>
@@ -249,9 +250,9 @@
                           class="input-edit"
                           type="text"
                           placeholder=""
-                          v-model="User.login_new"
+                          v-model="editUser.usu_login_new"
                         />
-                        <span>New Login</span>
+                        <span>Login New</span>
                       </label>
 
                       <label>
@@ -260,9 +261,9 @@
                           class="input-edit"
                           type="text"
                           placeholder=""
-                          v-model="User.login_temp"
+                          v-model="editUser.usu_logintemp"
                         />
-                        <span>Login Temp</span>
+                        <span>Login Temporal</span>
                       </label>
                     </div>
 
@@ -273,9 +274,7 @@
                     >
                       Cancelar
                     </button>
-                    <button type="submit" class="btn-modal-save-edit"
-                      @click="updateUser(user.usu_idagente)" 
-                    >
+                    <button type="submit" class="btn-modal-save-edit">
                       Guardar
                     </button>
                   </form>
@@ -321,7 +320,7 @@
                         <input
                           id="estado"
                           class="input-visu"
-                          type="number"
+                          type="text"
                           placeholder=""
                           required=""
                           v-model="estado"
@@ -418,7 +417,7 @@
               <transition name="fade">
                 <div class="modal-delete" v-if="showModalAlert">
                   <form class="form-delete">
-                    <h2>Eliminar Usuario</h2>
+                    <h2>Eliminar Usuario {{ user.usu_documento }}</h2>
                     <p>Seguro quieres elimininar la tarea</p>
                     <button
                       type="button"
@@ -428,7 +427,7 @@
                       Cancelar
                     </button>
                     <button type="submit" class="btn-modal-save-delete"
-                     @click="deleteUser(user.usu_idagente)">
+                     >
                       Aceptar
                     </button>
                   </form>
@@ -471,6 +470,16 @@ export default {
           login_new: '',
           login_temp: '',
       },
+      editUser: {
+          usu_documento: '',
+          usu_nombre: '',
+          usu_estado: '',
+          usu_passwd: '',
+          usu_login: '',
+          cau_codcargo: '',
+          usu_login_new: '',
+          usu_logintemp: '',
+      },
       usu_idagente: '',
 
       currentPage: 1, // Página actual
@@ -495,8 +504,8 @@ export default {
   },
   mounted() {
     this.fetchUsers();
-    this.fetchUsersForm();
   },
+
   methods: {
     async fetchUsers() {
       try {
@@ -517,7 +526,45 @@ export default {
         console.error("Error al obtener los datos del usuario:", error);
       }
     },
-    
+
+    async prepareEdit(usu_idagente) {
+      await this.fetchUsersFormUpdate(usu_idagente); // Carga los datos del usuario
+      this.showModalEdit = true; // Muestra el modal de edición
+    },
+
+    async fetchUsersFormUpdate(usu_idagente) {
+
+      // this.editUser.login_new = this.editUser.login_new ?? null;
+      // this.editUser.login_temp = this.editUser.login_temp ?? null;
+
+      //this.updateUser(); // Procede con la actualización
+      try {
+        const response = await axios.get(`http://localhost:5000/view-user/${usu_idagente}`);
+        this.editUser = response.data; // Asigna los datos obtenidos a User para editar
+        this.showModalEdit = true; // Abre el modal de edición
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    },
+
+    // Dentro de methods en tu componente Vue
+    async updateUser() {
+      console.log("Datos a enviar:", this.editUser);
+      console.log("Datos a enviar:", JSON.parse(JSON.stringify(this.editUser)));
+
+      try {
+        // Asegúrate de usar `editUser` para la actualización, 
+        // y de que `editUser.usu_idagente` contenga el ID correcto del usuario a actualizar.
+        const response = await axios.put(`http://localhost:5000/update-user/${this.editUser.usu_idagente}`, this.editUser)
+        this.editUser = response.data;
+        this.showModalEdit = false; // Cierra el modal de edición
+        await this.fetchUsers(); // Recarga la lista de usuarios para reflejar los cambios
+        console.log("Usuario actualizado correctamente");
+      } catch (error) {
+        console.error("Error al actualizar el usuario:", error.response.data);
+        // Considera mostrar un mensaje de error en la UI.
+      }
+    },
 
     async addUser() {
       try {
@@ -538,97 +585,11 @@ export default {
       }
     },
 
-//_____________________________________________________________________
-    
-    // async updateUser(id) {
-    //   try {
-    //     await axios.put(`http://localhost:5000/update-user/${id}`, {
-    //      
-    //        id: this.users.id,
-//
-    //     });
-    //     this.showModalEdit = false; // Cerrar el modal de edición
-    //     this.fetchTasks(); // Actualizar la lista de tareas
-    //   } catch (error) {
-    //     console.error("Error al actualizar al:", error);
-    //   }
-    // },
-
-    ////async updateUser(id) {
-      //try {
-      //  // Verificar que todos los campos estén definidos
-      //  if (this.users.documento && this.users.nombre /* && otros campos */) {
-     //     await axios.put(`http://localhost:5000/update-user/${id}`, {
-      //      documento: this.users.documento,
-      //      nombre: this.users.nombre,
-      //      estado: this.users.estado,
-      //      contrasena: this.users.contrasena,
-      //      login: this.users.login,
-      //      login_new: this.users.perfil,
-      //      login_temp: this.users.login_temp,
-      //    });
-      //    this.showModalEdit = false;
-      //    this.fetchTasks();
-      //  } else {
-      //    console.error("Error: Algunos datos no están definidos");
-      //  }
-    //  } catch (error) {
-    //    console.error("Error al actualizar la tarea:", error);
-    //  }
-    //},
-
-    async updateUser(usu_idagente) {
-      try {
-        const { documento, nombre, estado, contrasena, login, perfil, login_temp, login_new } = this.User;
-
-        // Verificar que todos los campos estén definidos
-        if (documento && nombre && estado && contrasena && login && perfil && login_temp && login_new) {
-          await axios.put(`http://localhost:5000/update-user/${usu_idagente}`,{
-            documento: this.documento,
-            nombre: this.nombre,
-            estado: this.estado,
-            contrasena: this.contrasena,
-            login: this.login,
-            perfil: this.perfil,
-            login_temp: this.login_new,
-            login_new: this.login_temp,
-          });
-
-          this.showModalEdit = false;
-          
-        } else {
-          console.log("Error: Algunos datos no están definidos");
-        }
-
-        this.fetchUsersForm();
-      } catch (error) {
-        console.log("Error al actualizar la tarea:", error);
-
-        // Imprimir detalles específicos de la respuesta si está disponible
-        if (error.response) {
-          console.log("Detalles de la respuesta:", error.response.data);
-        }
-      }
-    },
-
-  
-
-    //eliminar tarea de la BD
-    // async deleteUser(usu_idagente) {
-    //   try {
-    //     await axios.delete(`http://localhost:5000/delete-user/${usu_idagente}`);
-    //     // Eliminar la tarea de la lista localmente
-    //     this.users = this.users.filter(user => user.usu_idagente !== usu_idagente);
-    //     console.log("Usuario eliminada correctamente");
-    //   } catch (error) {
-    //     console.error("Error al eliminar la tarea:", error);
-    //   }
-    // },
 
     async deleteUser(usu_idagente) {
     try {
       await axios.delete(`http://localhost:5000/delete-user/${usu_idagente}`);
-      this.showModalAlert = true; // Abre el modal de visualización
+      this.fetchUsers();
       console.log("Usuario eliminado correctamente");
     } catch (error) {
       console.error("Error al eliminar el usuario:", error);

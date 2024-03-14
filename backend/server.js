@@ -62,9 +62,6 @@ app.post('/new-tarea', async (req, res) => {
   }
 });
 
-// Ruta para actualizar una tarea (no funciona)
-
-
 // Ruta para eliminar una tarea por su ID
 app.delete('/delete-tareas/:id', async (req, res) => {
   const { id } = req.params;
@@ -89,7 +86,6 @@ app.get('/search', async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
-
 
 //ADMINISTRADOR
 
@@ -128,11 +124,6 @@ app.get('/users', async (req, res) => {
   }
 });
 
-
-
-
-
-
 //VISUALIZAR PERAQAAAAAAAAAAAAAA  
 app.get('/view-user/:id', async (req, res) => {
   const { id } = req.params;
@@ -149,9 +140,30 @@ app.get('/view-user/:id', async (req, res) => {
   }
 });
 
+// Ruta para actualizar un usuario por su ID
 
+app.put('/update-user:usu_idagente', async (req, res) => {
+  
+  const { usu_idagente } = req.params;
+ 
+  try {
+    const [result] = await pool.execute(
+      `UPDATE users SET ? WHERE usu_idagente = ?`,
+      [req.body,usu_idagente]
+    );
 
-
+    if (result.affectedRows > 0) {
+      res.json({ message: 'Usuario actualizado correctamente' });
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
+      
+    }
+  } catch (error) {
+    console.log(result);
+    console.error('Error al actualizar el usuario:', error);
+    res.status(500).json({ message: 'Error interno del servidor', error: error.message });
+  }
+});
 
 
 // Ruta para obtener tareas paginadas
@@ -183,59 +195,6 @@ app.post('/new-user', async (req, res) => {
   }
 });
 
-//_____________________________________________________________________________
-
-
-app.put('/update-user/:usu_idagente', async (req,res) => {
-
-  try{
-      const {usu_idagente} = req.params;
-      const { documento, nombre, estado, passwd, login, cod_cargo, login_new, login_temp } = req.body;
-      const [result] = await pool.execute(`
-      UPDATE users 
-      SET usu_documento = ?, usu_nombre = ?, usu_estado = ?, usu_passwd = ?, usu_login = ?, cau_codcargo = ?, usu_login_new = ?, usu_logintemp = ? 
-      WHERE usu_idagente = ?
-    `, [documento, nombre, estado, passwd, login, cod_cargo, login_new, login_temp, usu_idagente]);
-      
-    if (result.affectedRows === 0) {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-    } else {
-      res.status(200).json({ message: 'Usuario actualizado correctamente' });
-    }
-  } catch (error) {
-  console.error('Error al actualizar el usuario:', error);
-  res.status(500).json({ message: 'Error al actualizar el usuario', error: error.message });
-  }
-
-});
-
-   //try {
-    // await pool.execute(
-    //   'UPDATE users SET usu_documento = ?, usu_nombre = ?, usu_estado = ?, usu_passwd = ?, usu_login = ?, cau_codcargo = ?, usu_login_new = ?, usu_logintemp = ? WHERE usu_idagente = ?',
-    //   [documento, nombre, estado, contrasena, login, perfil, login_new, login_temp, usu_idagente]
-    // );
-    // res.status(200).json({ message: ' Usuario actualizado correctamente' });
-  // } catch (error) {
-  //   console.error('Error al actualizar usuario:', error);
-  //   res.status(500).json({ message: 'Error interno del servidor' });
-  // }
-
-
-
-
-
-// Ruta para eliminar una tarea por su ID
-
-// app.delete('/delete-user/:id_u', async (req, res) => {
-//   const { id_u } = req.params;
-//   try {
-//     await pool.execute('DELETE FROM users WHERE usu_idagente = ?', [id_u]);
-//     res.json({ message: 'Tarea eliminada correctamente' });
-//   } catch (error) {
-//     console.error('Error al eliminar la tarea:', error);
-//     res.status(500).json({ message: 'Error interno del servidor' });
-//   }
-// });
 
 app.delete('/delete-user/:usu_idagente', async (req, res) => {
   const { usu_idagente } = req.params;
