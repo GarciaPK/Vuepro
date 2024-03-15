@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+//app.use(bodyParser.json());
+
 // Configuración de la conexión a MySQL
 const pool = mysql.createPool({
   host: '127.0.0.1',
@@ -142,26 +144,67 @@ app.get('/view-user/:id', async (req, res) => {
 
 // Ruta para actualizar un usuario por su ID
 
-app.put('/update-user:usu_idagente', async (req, res) => {
+// app.put('/update-user:usu_idagente', async (req, res) => {
   
-  const { usu_idagente } = req.params;
+//   const { usu_idagente } = req.params;
  
+//   try {
+//     const [result] = await pool.execute(
+//       `UPDATE users SET ? WHERE usu_idagente = ?`,
+//       [req.body,usu_idagente]
+//     );
+
+//     if (result.affectedRows > 0) {
+//       res.json({ message: 'Usuario actualizado correctamente' });
+//     } else {
+//       res.status(404).json({ message: 'Usuario no encontrado' });
+      
+//     }
+//   } catch (error) {
+//     console.log(result);
+//     console.error('Error al actualizar el usuario:', error);
+//     res.status(500).json({ message: 'Error interno del servidor', error: error.message });
+//   }
+// });
+
+app.put('/update-user/:usu_idagente', async (req, res) => {
+  const { usu_idagente } = req.params;
+  const {
+    usu_documento,
+    usu_nombre,
+    usu_estado,
+    usu_passwd,
+    usu_login,
+    cau_codcargo,
+    usu_login_new,
+    usu_logintemp
+  } = req.body; // Desestructuración directa de req.body
+
   try {
-    const [result] = await pool.execute(
-      `UPDATE users SET ? WHERE usu_idagente = ?`,
-      [req.body,usu_idagente]
-    );
+    const sql = `
+      UPDATE users
+      SET usu_documento = ?, usu_nombre = ?, usu_estado = ?, usu_passwd = ?, usu_login = ?, cau_codcargo = ?, usu_login_new = ?, usu_logintemp = ?
+      WHERE usu_idagente = ?`;
+    const params = [
+      usu_documento,
+      usu_nombre,
+      usu_estado,
+      usu_passwd,
+      usu_login,
+      cau_codcargo,
+      usu_login_new,
+      usu_logintemp,
+      usu_idagente
+    ];
+    const [result] = await pool.execute(sql, params);
 
     if (result.affectedRows > 0) {
       res.json({ message: 'Usuario actualizado correctamente' });
     } else {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-      
+      res.status(404).send('Usuario no encontrado');
     }
   } catch (error) {
-    console.log(result);
-    console.error('Error al actualizar el usuario:', error);
-    res.status(500).json({ message: 'Error interno del servidor', error: error.message });
+    res.status(500).json({ message: 'Error al actualizar el usuario', error: error.message });
   }
 });
 

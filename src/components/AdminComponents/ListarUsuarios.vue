@@ -471,6 +471,7 @@ export default {
           login_temp: '',
       },
       editUser: {
+          usu_idagente: '',
           usu_documento: '',
           usu_nombre: '',
           usu_estado: '',
@@ -548,23 +549,36 @@ export default {
     },
 
     // Dentro de methods en tu componente Vue
-    async updateUser() {
-      console.log("Datos a enviar:", this.editUser);
-      console.log("Datos a enviar:", JSON.parse(JSON.stringify(this.editUser)));
+    // async updateUser() {
+    //   console.log("Datos a enviar:", this.editUser);
+    //   console.log("Datos a enviar:", JSON.parse(JSON.stringify(this.editUser)));
 
+    //   try {
+    //     // Asegúrate de usar `editUser` para la actualización, 
+    //     // y de que `editUser.usu_idagente` contenga el ID correcto del usuario a actualizar.
+    //     const response = await axios.put(`http://localhost:5000/update-user/${this.editUser.usu_idagente}`, this.editUser)
+    //     this.editUser = response.data;
+    //     this.showModalEdit = false; // Cierra el modal de edición
+    //     await this.fetchUsers(); // Recarga la lista de usuarios para reflejar los cambios
+    //     console.log("Usuario actualizado correctamente");
+    //   } catch (error) {
+    //     console.error("Error al actualizar el usuario:", error.response.data);
+    //     // Considera mostrar un mensaje de error en la UI.
+    //   }
+    // },
+
+    async updateUser() {
       try {
-        // Asegúrate de usar `editUser` para la actualización, 
-        // y de que `editUser.usu_idagente` contenga el ID correcto del usuario a actualizar.
-        const response = await axios.put(`http://localhost:5000/update-user/${this.editUser.usu_idagente}`, this.editUser)
-        this.editUser = response.data;
-        this.showModalEdit = false; // Cierra el modal de edición
-        await this.fetchUsers(); // Recarga la lista de usuarios para reflejar los cambios
+        // Asegúrate de usar `this.editUser` si ese es el objeto correcto
+        await axios.put(`http://localhost:5000/update-user/${this.editUser.usu_idagente}`, this.editUser);
+        this.showModalEdit = false;
+        await this.fetchUsers();
         console.log("Usuario actualizado correctamente");
       } catch (error) {
-        console.error("Error al actualizar el usuario:", error.response.data);
-        // Considera mostrar un mensaje de error en la UI.
+        console.error("Error al actualizar el usuario:", error);
       }
     },
+
 
     async addUser() {
       try {
