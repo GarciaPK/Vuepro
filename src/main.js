@@ -28,6 +28,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createVuetify } from 'vuetify'
+import './axiosConfig';
 
 import 'vuetify/dist/vuetify.css'
 

@@ -14,7 +14,7 @@
 
           <div class="login_field">
             <img src="../assets/usuario.png" class="icon">
-            <input class="login_input" type="text" placeholder="User Name*" v-model="username" id="username" required>
+            <input class="login_input" type="text" placeholder="Document*" v-model="document" id="document" required>
           </div>
 
           <div class="login_field">
@@ -34,36 +34,45 @@
 <script>
 import axios from 'axios';
 
+
 export default {
   data() {
     return {
-      username: '',
+      document: '',
       password: ''
     };
   },
   methods: {
     login() {
-      axios.post('http://localhost:5000/login', {
-        username: this.username,
-        password: this.password
+      const auth = {
+        Document: this.document,
+        Password: this.password
+      }
+      axios.post('https://localhost:44355/api/AuthToken/',auth,{
+        headers: {
+        'Content-Type': 'application/json'
+      }
       })
       .then(response => {
-        const { role } = response.data;
-
+        const { role } = response.data.user; 
+        const token = response.data.token;
         // Almacena el rol del usuario en el almacenamiento local
-        localStorage.setItem('user', role);
+        localStorage.setItem('tokenDeAcceso', token);
+        localStorage.setItem('user', role.name);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         // Redirige según el rol
-        this.redirectBasedOnRole(role);
+        this.redirectBasedOnRole(role.name);
       })
       .catch(error => {
         console.error('Error al iniciar sesión:', error);
+        console.log('ROLE:',this.role);
         alert('Credenciales inválidas. Por favor, inténtalo de nuevo.');
       });
     },
     redirectBasedOnRole(role) {
       // Redirige según el rol
-      if (role === 'M') { // Suponiendo que el rol de administrador se identifica como 'M'
+      if (role === 'admin') { // Suponiendo que el rol de administrador se identifica como 'M'
         this.$router.push('/admin'); // Redirige directamente a la página del administrador
       } else {
         this.$router.push('/user'); // Redirige a la página del dashboard para el usuario regular
