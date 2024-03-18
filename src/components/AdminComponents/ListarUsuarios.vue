@@ -8,7 +8,6 @@
       <table>
         <thead>
           <tr>
-            <th align="left" class="pl-3">Cod Interno</th>
             <th align="left" class="pl-3">Nombres</th>
             <th align="left" class="pl-3">Documento</th>
             <th align="left" class="pl-3">Login</th>
@@ -18,12 +17,12 @@
         </thead>
         <tbody>
           <!-- <tr v-for="user in users" :key="user.id"> -->
-          <tr v-for="user in paginatedTasks" :key="user.usu_idagente">
-            <td align="left" class="pl-3">{{ user.usu_idagente }}</td>
-            <td align="left" class="pl-3">{{ user.usu_nombre }}</td>
-            <td align="left" class="pl-3">{{ user.usu_documento }}</td>
-            <td align="left" class="pl-3">{{ user.usu_login }}</td>
-            <td align="left" class="pl-3">{{ user.usu_estado }}</td>
+          <tr v-for="user in users" :key="user.id">
+            <td align="left" class="pl-3">{{ user.id}}</td>
+            <td align="left" class="pl-3">{{ user.names}}</td>
+            <td align="left" class="pl-3">{{ user.document }}</td>
+            <td align="left" class="pl-3">{{ user.login }}</td>
+            <td align="left" class="pl-3">{{ user.status }}</td>
             <td>
               <button class="editar" @click="prepareEdit(user.usu_idagente)">
                 <img src="@/assets/boligrafo.png" />
@@ -438,13 +437,13 @@
           </tr>
         </tbody>
       </table>
-      <!-- <div class="pagination">
+      <div class="pagination">
         <button @click="prevPage" :disabled="currentPage === 1">Anterior</button>
         <span>{{ currentPage }} de {{ totalPages }}</span>
         <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
       </div>
     </div>
-</template>-->
+</template>
 
 <script>
 import axios from "axios";
@@ -454,21 +453,19 @@ export default {
     return {
       isDisabled: true,
       users: [],
-      user:[],
       showModal: false,
       showModalEdit: false,
       showModalVisu: false,
       showModalAlert: false,
       searchTerm: '', //buscador
       User: {
-          documento: '',
-          nombre: '',
-          estado: '',
-          contrasena: '',
-          login: '',
-          perfil: '',
-          login_new: '',
-          login_temp: '',
+          Document: '',
+          Names: '',
+          Phone1: '',
+          Contrasena: '',
+          Email: '',
+          Status: '',
+          Login: ''
       },
       editUser: {
           usu_idagente: '',
@@ -481,7 +478,7 @@ export default {
           usu_login_new: '',
           usu_logintemp: '',
       },
-      usu_idagente: '',
+      Id: '',
 
       currentPage: 1, // Página actual
       pageSize: 10, // Tamaño de página
@@ -507,15 +504,20 @@ export default {
     this.fetchUsers();
   },
 
+  arrayDeUsuarios() {
+    return Object.values(this.users);
+  },
+
   methods: {
-    async fetchUsers() {
-      try {
-        const response = await axios.get("https://localhost:44355/api/User");
-        this.users = response.data;
+    fetchUsers() {
+    axios.get("https://localhost:44355/api/User")
+      .then(response => {
+        this.users = response.data; // Asegúrate de que el path a .user sea correcto
         console.log(this.users);
-      } catch (error) {
+      })
+      .catch(error => {
         console.error("Error al obtener los usuarios:", error);
-      }
+      });
     },
 
     // Método para cargar y mostrar los datos del usuario en el modal

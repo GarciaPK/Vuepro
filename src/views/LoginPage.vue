@@ -55,6 +55,7 @@ export default {
       })
       .then(response => {
         const { role } = response.data.user; 
+        
         const token = response.data.token;
         // Almacena el rol del usuario en el almacenamiento local
         localStorage.setItem('tokenDeAcceso', token);
