@@ -438,13 +438,13 @@
           </tr>
         </tbody>
       </table>
-      <div class="pagination">
+      <!-- <div class="pagination">
         <button @click="prevPage" :disabled="currentPage === 1">Anterior</button>
         <span>{{ currentPage }} de {{ totalPages }}</span>
         <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
       </div>
     </div>
-</template>
+</template>-->
 
 <script>
 import axios from "axios";
@@ -496,12 +496,12 @@ export default {
     totalPages() {
       return Math.ceil(this.users.length / this.pageSize);
     },
-    // Obtener las tareas para la página actual
-    paginatedTasks() {
-      const start = (this.currentPage - 1) * this.pageSize;
-      const end = start + this.pageSize;
-      return this.users.slice(start, end);
-    }
+    // Obtener las tareas para la página actual (FUNCIONA)
+    // paginatedTasks() {
+    //   const start = (this.currentPage - 1) * this.pageSize;
+    //   const end = start + this.pageSize;
+    //   return this.users.slice(start, end);
+    // }
   },
   mounted() {
     this.fetchUsers();
@@ -510,8 +510,9 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const response = await axios.get("http://localhost:5000/users");
+        const response = await axios.get("https://localhost:44355/api/User");
         this.users = response.data;
+        console.log(this.users);
       } catch (error) {
         console.error("Error al obtener los usuarios:", error);
       }
