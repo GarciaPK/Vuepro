@@ -444,7 +444,7 @@
         <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
       </div>
     </div>
-</template>
+</template>-->
 
 <script>
 import axios from "axios";
